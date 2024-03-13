@@ -1,0 +1,111 @@
+<div class="mt-5">
+  <form
+    class="needs-validation"
+    [formGroup]="speechToNotionForm"
+    (ngSubmit)="onGenerate()"
+    novalidate
+  >
+    <div class="mb-3 has-validation">
+      <label data-cy="label-sound" for="sound" class="form-label">{{
+        "speech-to-text.form.sound.label" | translate
+      }}</label>
+      <input
+        data-cy="input-sound"
+        class="form-control"
+        type="file"
+        id="sound"
+        (change)="onUploadFile($event.target)"
+        formControlName="audioFile"
+        accept=".wav,.mp3,.mpeg,.mpga,.m4a,.webm"
+        [class.is-valid]="speechToNotionForm.get('audioFile')?.valid"
+      />
+    </div>
+
+    <div class="mb-3 has-validation">
+      <label for="document-name" class="form-label">{{
+        "speech-to-text.form.document-name.label" | translate
+      }}</label>
+      <input
+        data-cy="input-document"
+        type="email"
+        class="form-control"
+        [class.is-valid]="speechToNotionForm.get('documentName')?.valid"
+        [class.is-invalid]="
+          speechToNotionForm.get('documentName')?.dirty &&
+          speechToNotionForm.get('documentName')?.invalid
+        "
+        id="document-name"
+        placeholder="{{
+          'speech-to-text.form.document-name.placeholder' | translate
+        }}"
+        formControlName="documentName"
+      />
+
+      <div
+        *ngIf="
+          speechToNotionForm.get('documentName')?.dirty &&
+          speechToNotionForm.get('documentName')?.hasError('required')
+        "
+        class="invalid-feedback"
+        data-cy="input-document-error-required"
+      >
+        {{
+          "speech-to-text.form.document-name.validation.required" | translate
+        }}
+      </div>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button
+        data-cy="btn-generate"
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!speechToNotionForm.valid || isGenerating"
+      >
+        <div *ngIf="!isGenerating" data-cy="btn-generate-default-text">
+          {{ "speech-to-text.form.btn-generate.label" | translate }}
+        </div>
+        <div
+          *ngIf="isGenerating"
+          class="d-flex align-items-center justify-content-center"
+          data-cy="btn-generate-in-progress"
+        >
+          <fa-icon class="me-2" icon="circle-notch" animation="spin"></fa-icon>
+          {{ "speech-to-text.form.btn-generate.loading" | translate }}
+        </div>
+      </button>
+    </div>
+  </form>
+  <div class="mt-2 mb-2 d-flex justify-content-center align-items-center">
+    <a
+      class="link-primary"
+      data-cy="link-to-notion-doc"
+      href="{{ linkNotionDoc }}"
+      *ngIf="linkNotionDoc != ''"
+      target="_blank"
+      >{{ "speech-to-text.link-to-notion-doc" | translate }}</a
+    >
+  </div>
+  <ngb-alert
+    *ngIf="flowStatus == 'success'"
+    type="success"
+    class="d-flex align-items-center justify-content-center"
+    [dismissible]="false"
+  >
+    <fa-icon class="me-2" icon="check" size="2x"></fa-icon>
+    <div data-cy="alert-success">
+      {{ "speech-to-text.alert.success" | translate }}
+    </div>
+  </ngb-alert>
+  <ngb-alert
+    *ngIf="flowStatus == 'error'"
+    type="danger"
+    class="d-flex align-items-center justify-content-center"
+    [dismissible]="false"
+  >
+    <fa-icon class="me-2" icon="circle-xmark" size="2x"></fa-icon>
+    <div data-cy="alert-error">
+      {{ "speech-to-text.alert.error" | translate }}
+    </div>
+  </ngb-alert>
+</div>

@@ -1,0 +1,28 @@
+{
+    "title": "Je suis Polyglote.AI",
+    "english": "Anglais",
+    "french": "Français",
+    "speech-to-text": {
+        "form": {
+            "sound": {
+            "label": "Fichier audio à transformer (mp3)"
+            },
+            "document-name": {
+            "label": "Nom du document",
+            "placeholder": "Mon document dans notion",
+            "validation": {
+                "required": "Le champ nom de document est requis"
+            }
+            },
+            "btn-generate": {
+            "label": "Générer",
+            "loading": "Génération en cours..."
+            }
+        },
+        "link-to-notion-doc": "Accés à votre document dans Notion",
+        "alert": {
+            "success": "Génération OK",
+            "error": "Une erreur est survenue lors de la génération de l'audio en texte"
+        }
+    }
+}

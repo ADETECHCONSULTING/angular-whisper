@@ -22,4 +22,8 @@ export class AppComponent implements OnInit {
   private initFontAwesomeIcons(): void {
     this.faIconLibrary.addIcons(...fontawesomeIcons);
   }
+
+  switchLanguage(language: string): void {
+    console.log(`Switching language to ${language}`);
+  }
 }

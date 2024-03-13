@@ -1,0 +1,28 @@
+{
+    "title": "I am Polyglot.AI",
+    "english": "English",
+    "french": "French",
+    "speech-to-text": {
+        "form": {
+          "sound": {
+            "label": "Audio File (mp3) to transform"
+          },
+          "document-name": {
+            "label": "Document name",
+            "placeholder": "My document in notion",
+            "validation": {
+              "required": "Document name shouldn't be empty"
+            }
+          },
+          "btn-generate": {
+            "label": "Generate",
+            "loading": "Generation in progress..."
+          }
+        },
+        "link-to-notion-doc": "Access your document on notion",
+        "alert": {
+          "success": "Generation OK",
+          "error": "An error occured while generating your speech to text"
+        }
+    }
+}
