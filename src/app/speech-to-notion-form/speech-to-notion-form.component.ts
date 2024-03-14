@@ -30,8 +30,9 @@ import { SpeechToNotionFormService } from './service/speech-to-notion-form.servi
 export class SpeechToNotionFormComponent {
   audioToProcess?: File;
   isGenerating = false;
-  linkNotionDoc = 'test';
+  linkNotionDoc = '';
   flowStatus: 'error' | 'success' | 'idle' = 'idle';
+  parentPageId = '3b625b4729d94b56ac24df3511f7bd72';
 
   speechToNotionForm = new FormGroup<SpeechToNotionFormModel>({
     audioFile: new FormControl<string>('', {
@@ -74,7 +75,7 @@ export class SpeechToNotionFormComponent {
       this.speechToNotionFormService.transcript(
         this.audioToProcess,
         this.speechToNotionForm.getRawValue().documentName,
-        'test'
+        this.parentPageId
       );
     }
   }

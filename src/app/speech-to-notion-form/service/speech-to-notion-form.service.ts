@@ -41,6 +41,7 @@ export class SpeechToNotionFormService {
     this.whisperService
       .transcriptAudioToWhisper(file)
       .pipe(
+        tap((res: WhisperResponse) => console.log(res.text)),
         map((whisperResponse) =>
           this.mapTextToNotionPageRequest(whisperResponse, pageTitle, pageId)
         ),
